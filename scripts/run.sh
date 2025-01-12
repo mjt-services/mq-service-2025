@@ -14,13 +14,6 @@ docker network create "${NETWORK_NAME}" || true
 
 docker stop "${NAME}" || true
 
-docker run -it --rm -d \
-  --name "${NAME}" \
-  --network mq_network \
-  -v "${SCRIPT_DIR}/../nats.conf:/nats.conf" \
-   "${IMAGE_TAG}" \
-  -c /nats.conf
-
 docker stop cloudflared || true
 
 docker run --rm -d \
@@ -29,3 +22,12 @@ docker run --rm -d \
   cloudflare/cloudflared:latest tunnel \
   --no-autoupdate run \
   --token "${CF_TUNNEL}" \
+  
+# docker run -it --rm -d \
+docker run -it --rm \
+  --name "${NAME}" \
+  --network mq_network \
+  --env-file "${SCRIPT_DIR}/../.env" \
+  -v "${SCRIPT_DIR}/../nats.conf:/nats.conf" \
+  "${IMAGE_TAG}" \
+  -c /nats.conf

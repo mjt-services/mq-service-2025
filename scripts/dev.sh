@@ -13,5 +13,4 @@ ENV_FILE="${SCRIPT_DIR}/../.env"
 
 docker run -it --rm \
   --name "${NAME}" \
-  --env-file "${ENV_FILE}" \
-  --entrypoint /bin/bash  "${IMAGE_TAG}"
+  --entrypoint /bin/sh  "${IMAGE_TAG}"
