@@ -23,8 +23,8 @@ docker run --rm -d \
   --no-autoupdate run \
   --token "${CF_TUNNEL}" \
   
-# docker run -it --rm -d \
-docker run -it --rm \
+# docker run -it --rm \
+docker run -it --rm -d \
   --name "${NAME}" \
   --network mq_network \
   --env-file "${SCRIPT_DIR}/../.env" \
